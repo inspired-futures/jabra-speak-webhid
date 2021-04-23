@@ -9,7 +9,8 @@ window.addEventListener("unload", function()
 
 window.addEventListener("load", function()
 {
-    const clear = document.getElementById("clear");	
+    const attach = document.getElementById("attach");	
+    const clear = document.getElementById("clear");			
     const connect = document.getElementById("connect");
 	const ring = document.getElementById("ring");
     const mute = document.getElementById("mute");
@@ -22,10 +23,12 @@ window.addEventListener("load", function()
     mute.addEventListener('click', event => { jabra.mute() });
     hold.addEventListener('click', event => { jabra.hold() });
 	
-
-	jabra.attach(event => 
+    attach.addEventListener('click', event => 
 	{
-		console.debug("jabra event", event);
-		events.innerHTML += event + "<br/>"
+		jabra.attach(event => 
+		{
+			console.debug("jabra event", event);
+			events.innerHTML += event + "<br/>"
+		});
 	});
 });
