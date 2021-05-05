@@ -1,7 +1,7 @@
 import JabraSpeak410 from "./jabra-speak-410.js";
 import JabraSpeak510 from "./jabra-speak-510.js";
 
-const jabra = null;
+let jabra = null;
 
 window.addEventListener("unload", function()
 {
