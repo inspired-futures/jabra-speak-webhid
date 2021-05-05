@@ -1,10 +1,11 @@
 import JabraSpeak410 from "./jabra-speak-410.js";
+import JabraSpeak510 from "./jabra-speak-510.js";
 
-const jabra = new JabraSpeak410();
+const jabra = null;
 
 window.addEventListener("unload", function()
 {
-	jabra.detach();
+	if (jabra) jabra.detach();
 });
 
 window.addEventListener("load", function()
@@ -15,13 +16,17 @@ window.addEventListener("load", function()
 	const ring = document.getElementById("ring");
     const mute = document.getElementById("mute");
     const hold = document.getElementById("hold");
-    const events = document.getElementById("events");
+    const events = document.getElementById("events");	
+    const device = document.getElementById("device");
+
+	jabra = (device.value == "jabra-speak-410") ?  new JabraSpeak410() : new JabraSpeak510();	
 
     clear.addEventListener('click', event => { jabra.clear() });	
     connect.addEventListener('click', event => { jabra.connect() });
 	ring.addEventListener('click', event => { jabra.ring() });
     mute.addEventListener('click', event => { jabra.mute() });
     hold.addEventListener('click', event => { jabra.hold() });
+	
 	
     attach.addEventListener('click', event => 
 	{
