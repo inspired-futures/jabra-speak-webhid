@@ -19,17 +19,17 @@ window.addEventListener("load", function()
     const events = document.getElementById("events");	
     const device = document.getElementById("device");
 
-	jabra = (device.value == "jabra-speak-410") ?  new JabraSpeak410() : new JabraSpeak510();	
-
-    clear.addEventListener('click', event => { jabra.clear() });	
-    connect.addEventListener('click', event => { jabra.connect() });
-	ring.addEventListener('click', event => { jabra.ring() });
-    mute.addEventListener('click', event => { jabra.mute() });
-    hold.addEventListener('click', event => { jabra.hold() });
+    clear.addEventListener('click', 	event => { if (jabra) jabra.clear() });	
+    connect.addEventListener('click', 	event => { if (jabra) jabra.connect() });
+	ring.addEventListener('click', 		event => { if (jabra) jabra.ring() });
+    mute.addEventListener('click', 		event => { if (jabra) jabra.mute() });
+    hold.addEventListener('click', 		event => { if (jabra) jabra.hold() });
 	
 	
     attach.addEventListener('click', event => 
 	{
+		jabra = (device.value == "jabra-speak-410") ?  new JabraSpeak410() : new JabraSpeak510();			
+		
 		jabra.attach(event => 
 		{
 			console.debug("jabra event", event);
