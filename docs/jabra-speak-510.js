@@ -61,7 +61,7 @@ export default class JabraSpeak510
 	
     _handleDevice(event)
     {
-		console.debug("_handleDevice", event.data.getUint8(0), event.data.getUint8(1));
+		//console.debug("_handleDevice", event.data.getUint8(0), event.data.getUint8(1));
 		
 		let reportId = event.reportId;
 		let reportData = event.data;
