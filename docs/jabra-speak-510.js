@@ -36,31 +36,33 @@ export default class JabraSpeak510
 
 	async clear()
 	{
-		await this.device.sendReport(0x03, Uint8Array.from([0x00]));
+		await this.device.sendReport(0x04, Uint8Array.from([0x00]));
 	}
 	
 	async connect()
 	{
-		await this.device.sendReport(0x03, Uint8Array.from([0x01]));
+		await this.device.sendReport(0x04, Uint8Array.from([0x01]));
 	}
 	
 	async mute()
 	{
-		await this.device.sendReport(0x03, Uint8Array.from([0x05]));
+		await this.device.sendReport(0x04, Uint8Array.from([0x05]));
 	}	
 	
 	async ring()
 	{
-		await this.device.sendReport(0x03, Uint8Array.from([0x08]));
+		await this.device.sendReport(0x04, Uint8Array.from([0x08]));
 	}
 	
 	async hold()
 	{
-		await this.device.sendReport(0x03, Uint8Array.from([0x09]));
+		await this.device.sendReport(0x04, Uint8Array.from([0x12]));
 	}	
 	
     _handleDevice(event)
     {
+		console.debug("_handleDevice", event.data.getUint8(0), event.data.getUint8(1));
+		
 		let reportId = event.reportId;
 		let reportData = event.data;
 
@@ -73,12 +75,12 @@ export default class JabraSpeak510
 		}
 		else
 			
-		if (reportId == 0x03) 
+		if (reportId == 0x04) 
 		{	  
-			if ((reportData.getUint8(0) == 0x01) && (reportData.getUint8(1) == 0x00)) status = 'active';
-			if ((reportData.getUint8(0) == 0x00) && (reportData.getUint8(1) == 0x00)) status = 'idle';
-			if ((reportData.getUint8(0) == 0x08) && (reportData.getUint8(1) == 0x00)) status = 'mute pressed';	
-			if ((reportData.getUint8(0) == 0x09) && (reportData.getUint8(1) == 0x00)) status = 'mute pressed';	
+			if ((reportData.getUint8(0) == 0x01) && (reportData.getUint8(1) == 0x00)) status = 'active';		// green on ringing
+			if ((reportData.getUint8(0) == 0x02) && (reportData.getUint8(1) == 0x00)) status = 'idle';			// red on connected
+			if ((reportData.getUint8(0) == 0x81) && (reportData.getUint8(1) == 0x00)) status = 'idle';			// red on ringing	
+			if ((reportData.getUint8(0) == 0x13) && (reportData.getUint8(1) == 0x00)) status = 'mute pressed';	
 		}		
 	  
 		if (this.callback && status) this.callback(status);
