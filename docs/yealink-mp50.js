@@ -56,7 +56,7 @@ export default class YealinkMP50
 	
 	async mute()
 	{
-		await this.device.sendReport(0x02, Uint8Array.from([0x02]));
+		await this.device.sendReport(0x02, Uint8Array.from([0x03]));
 	}	
 	
     _handleDevice(event)
@@ -70,8 +70,8 @@ export default class YealinkMP50
 		
 		if (reportId == 0x01) 
 		{
-			if (reportData.getUint8(0) & 0x01) status = 'volume-down';		  
-			if (reportData.getUint8(0) & 0x02) status = 'volume-up';
+			if (reportData.getUint8(0) & 0x01) status = 'volume-up';		  
+			if (reportData.getUint8(0) & 0x02) status = 'volume-down';
 		}
 		else
 			
