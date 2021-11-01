@@ -1,4 +1,4 @@
-class YealinkMP50
+export default class YealinkMP50
 {
     constructor() {
 		this.device = null;
