@@ -1,4 +1,4 @@
-export default class YealinkMP50
+class YealinkMP50
 {
     constructor() {
 		this.device = null;
@@ -79,8 +79,21 @@ export default class YealinkMP50
 		{	  
 			if ((reportData.getUint8(0) == 0x01) && (reportData.getUint8(1) == 0x00)) status = 'active';
 			if ((reportData.getUint8(0) == 0x00) && (reportData.getUint8(1) == 0x00)) status = 'idle';
-			if ((reportData.getUint8(0) == 0x08) && (reportData.getUint8(1) == 0x00)) status = 'mute pressed';	
-			if ((reportData.getUint8(0) == 0x09) && (reportData.getUint8(1) == 0x00)) status = 'mute pressed';	
+			if ((reportData.getUint8(0) == 0x02) && (reportData.getUint8(1) == 0x00)) status = 'bit2 set';	
+			if ((reportData.getUint8(0) == 0x03) && (reportData.getUint8(1) == 0x00)) status = 'bit3 set';
+			if ((reportData.getUint8(0) == 0x04) && (reportData.getUint8(1) == 0x00)) status = 'bit4 set';	
+			if ((reportData.getUint8(0) == 0x05) && (reportData.getUint8(1) == 0x00)) status = 'bit5 set';	
+			if ((reportData.getUint8(0) == 0x06) && (reportData.getUint8(1) == 0x00)) status = 'bit6 set';	
+			if ((reportData.getUint8(0) == 0x07) && (reportData.getUint8(1) == 0x00)) status = 'bit7 set';
+			if ((reportData.getUint8(0) == 0x08) && (reportData.getUint8(1) == 0x00)) status = 'bit8 set';	
+			if ((reportData.getUint8(0) == 0x09) && (reportData.getUint8(1) == 0x00)) status = 'bit9 set';	
+			if ((reportData.getUint8(0) == 0x0a) && (reportData.getUint8(1) == 0x00)) status = 'bita set';	
+			if ((reportData.getUint8(0) == 0x0b) && (reportData.getUint8(1) == 0x00)) status = 'bitb set';
+			if ((reportData.getUint8(0) == 0x0c) && (reportData.getUint8(1) == 0x00)) status = 'bitc set';	
+			if ((reportData.getUint8(0) == 0x0d) && (reportData.getUint8(1) == 0x00)) status = 'bitd set';	
+			if ((reportData.getUint8(0) == 0x0e) && (reportData.getUint8(1) == 0x00)) status = 'bite set';	
+			if ((reportData.getUint8(0) == 0x0f) && (reportData.getUint8(1) == 0x00)) status = 'bitf set';
+		
 		}		
 	  
 		if (this.callback && status) this.callback(status);
