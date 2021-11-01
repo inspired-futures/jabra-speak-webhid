@@ -1,5 +1,6 @@
 import JabraSpeak410 from "./jabra-speak-410.js";
 import JabraSpeak510 from "./jabra-speak-510.js";
+import YealinkMP50 from "./yealink-mp50.js";
 
 let jabra = null;
 
@@ -28,7 +29,7 @@ window.addEventListener("load", function()
 	
     attach.addEventListener('click', event => 
 	{
-		jabra = (device.value == "jabra-speak-410") ?  new JabraSpeak410() : new JabraSpeak510();			
+		jabra = (device.value == "jabra-speak-410") ?  new JabraSpeak410() : ((device.value == "jabra-speak-510") ?  new JabraSpeak510() : new YealinkMP50());			
 		
 		jabra.attach(event => 
 		{
