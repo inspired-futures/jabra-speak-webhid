@@ -44,19 +44,19 @@ export default class YealinkMP50
 		await this.device.sendReport(0x02, Uint8Array.from([0x01]));
 	}
 	
-	async mute()
+	async ring()
 	{
 		await this.device.sendReport(0x02, Uint8Array.from([0x05]));
 	}	
 	
-	async ring()
+	async hold()
 	{
 		await this.device.sendReport(0x02, Uint8Array.from([0x08]));
 	}
 	
-	async hold()
+	async mute()
 	{
-		await this.device.sendReport(0x02, Uint8Array.from([0x09]));
+		await this.device.sendReport(0x02, Uint8Array.from([0x02]));
 	}	
 	
     _handleDevice(event)
